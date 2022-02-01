@@ -24,3 +24,11 @@ Route::get('/404', function () {
 })->name('404');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
