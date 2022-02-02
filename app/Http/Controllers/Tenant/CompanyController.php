@@ -17,7 +17,7 @@ class CompanyController extends Controller
     public function __construct(Company $company)
     {
         $this->company = $company;
-        //$this->middleware('aut');
+        $this->middleware('auth');
     }
 
     /**
@@ -27,6 +27,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = $this->company->latest()->paginate();
+
         return view('tenants.companies.index', compact('companies'));
     }
 
@@ -36,7 +37,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('tenants.companies.create', compact('companies'));
+        return view('tenants.companies.create', ['company' => new Company()]);
     }
 
 
@@ -48,6 +49,7 @@ class CompanyController extends Controller
     public function store(StoreUpdateCompanyFormRequest $request)
     {
 
+        dd($request);
         $company = $this->company->create($request->all());
         /*
         $value = Str::random(5);
@@ -69,15 +71,6 @@ class CompanyController extends Controller
         return redirect()
             ->route('company.index')
             ->withSuccess('Cadastro realizado com sucesso');
-    }
-
-    /**
-     * @return  \Illuminate\Http\Response
-     */
-    public function indexfr()
-    {
-        $companies = $this->company->latest()->paginate();
-        return view('tenants.companies.index', compact('companies'));
     }
 
     /**

@@ -23,6 +23,7 @@ class StoreUpdateCompanyFormRequest extends FormRequest
      */
     public function rules()
     {
+
         $id = $this->id;
         return [
             'name'          => 'required|min:3|max:100',
